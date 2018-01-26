@@ -1,9 +1,9 @@
 # README #
 
 It consists several parts:
- LAMPIR driven code, based on arduino
- Raspberry Pi code for camera, data storage
- Human detection of photos
+ 1. LAMPIR driven code, based on arduino\n
+ 2. Raspberry Pi code for camera, data storage\n
+ 3. Human detection of photos\n
 
 ### What is this repository for? ###
 
