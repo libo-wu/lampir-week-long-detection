@@ -9,10 +9,10 @@
 
 ### How do I get set up? ###
 1. LAMPIR is as a slave of Raspi. it runs arduino continuously. 
-2. Raspi runs python code, with multithread to collect data (plot) and storage photos.
+2. Raspi runs python code, with multithread to collect data (plot) and storage photos. See (https://www.tutorialspoint.com/python/python_multithreading.htm)
 3. Filename is based on the time.
 4. Picamera takes photos every 1 min, or when triggerred.
-   * When the analog signal exceeds a value, take photos.
+   *  When the analog signal exceeds a value, take photos.
 
 
 ### Contribution guidelines ###
