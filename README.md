@@ -12,7 +12,7 @@
 2. Raspi runs python code, with multithread to collect data (plot) and storage photos.
 3. Filename is based on the time.
 4. Picamera takes photos every 1 min, or when triggerred.
-   1. When the analog signal exceeds a value, take photos.
+   * When the analog signal exceeds a value, take photos.
 
 
 ### Contribution guidelines ###
