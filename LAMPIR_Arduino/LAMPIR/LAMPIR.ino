@@ -7,13 +7,13 @@ Jan 2018
 
 
 #include <SoftwareSerial.h>
-#include "Filter.h"
+//#include "Filter.h"
 
 /*-----( Declare Constants, Pin Numbers )-----*/ 
 #define volNum        400   // the number of the array 
 #define gain          1
 #define led           2
-ExponentialFilter<long> FilteredTemperature(20, 0);  //Filter is used. ExponentialFilter(weight, current)
+//ExponentialFilter<long> FilteredTemperature(20, 0);  //Filter is used. ExponentialFilter(weight, current)
                                                      //w=20 is weight 20/100=0.2; Initial=0; current=w*new+(1-w)*current;
                                                      
 
@@ -104,8 +104,8 @@ ISR(TIMER2_COMPA_vect){   //update led status every n*1*volNum (ms)
        //vol[volRead_index]=(int)FilteredTemperature.Current();
        vol[volRead_index]=RawTemperature;
        
-//       BTserial.print(vol[volRead_index]);    //transmission
-//       BTserial.print("\n");
+       BTserial.print(vol[volRead_index]);    //transmission
+       BTserial.print("\n");
        
        if(vol[volRead_index]<MinVol){
         MinVol=vol[volRead_index];
@@ -136,7 +136,7 @@ ISR(TIMER2_COMPA_vect){   //update led status every n*1*volNum (ms)
 //      bitWrite(OccuState, 0,0);
     }
     
-    printBits(OccuState);
+    //printBits(OccuState);
     
     if(OccuState>=0x04){
       digitalWrite(led, HIGH);
