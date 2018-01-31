@@ -1,11 +1,11 @@
-#! python3
+
 
 import sys
 import glob
 import serial
 from serial import SerialException
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from time import time
 
 def serial_port():
