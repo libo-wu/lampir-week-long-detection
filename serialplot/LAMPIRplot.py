@@ -31,7 +31,8 @@ def serial_port():
 	return result
 	
 port_list=serial_port()
-port=''.join(port_list)
+port=port_list[0]
+port=''.join(port)
 ser=serial.Serial(port, 38400)
 
 plt.ion()

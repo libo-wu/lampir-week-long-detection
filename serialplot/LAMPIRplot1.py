@@ -31,7 +31,8 @@ def serial_port():
 	return result
 	
 port_list=serial_port()
-port=''.join(port_list)
+port=port_list[0]
+port=''.join(port)
 ser=serial.Serial(port, 38400)
 
 
@@ -102,7 +103,7 @@ def main():
         analogData.add(data)
         analogPlot.update(analogData)
     except KeyboardInterrupt:
-      print 'exiting'
+      print 'q'
       break
   # close serial
   ser.flush()
