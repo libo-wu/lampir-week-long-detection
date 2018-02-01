@@ -31,8 +31,6 @@ def serial_port():	#get avalable ports
 			pass
 	return result
 	
-def getfilename():	#get filename every minute
-	
 	
 port_list=serial_port()
 port=port_list[0]
@@ -40,59 +38,49 @@ port=''.join(port)
 ser=serial.Serial(port, 38400)
 
 voltage=[]
-
-
 ser.flushInput()
+start_time=datetime.now()
 filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 outfile='/home/libowu/datalog/lampirdata/'+filename+'.csv'
 
-run=True
-while run:
-	filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-	outfile='/home/libowu/datalog/lampirdata/'+filename+'.csv'
+while True:
+	dt=datetime.now()-start_time
 	f=open(outfile,'a')
-	while True:
-		try: 
-			data=ser.readline()
-			f.write(str(data))
-			f.write(str(datetime.now()))
-			f.write('\n')
-			#f.flush()
-		except (KeyboardInterrupt, SystemExit):
-			run=False
-			raise
-	
-		
+	if dt.seconds<5:
+		data=ser.readline()
+		f.write(str(data))
+		f.write(str(datetime.now()))
+		f.write('\n')
+	else:
+		f.close()
+		print('new file')
+		start_time=datetime.now()
+		filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
+		outfile='/home/libowu/datalog/lampirdata/'+filename+'.csv'
 
-f=open(outfile, 'a')
-'''
-try:
-	while run:
-		data=ser.readline()
-		f.write(str(data))
-		f.write(str(datetime.now()))
-		f.write('\n')
-except (KeyboardInterrupt, SystemExit):
-	run=False
-	raise
-'''	
-while run:
-	try:
-		
-		data=ser.readline()
-		f.write(str(data))
-		f.write(str(datetime.now()))
-		f.write('\n')
-		#f.flush()
-	except (KeyboardInterrupt, SystemExit):
-		run=False
-		raise
 f.close()
 	
 # close serial
 ser.flush()
 ser.close()
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
