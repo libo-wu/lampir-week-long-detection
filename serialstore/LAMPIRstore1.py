@@ -5,7 +5,7 @@ import glob
 import serial
 from serial import SerialException
 import numpy as np
-from matplotlib import pyplot as plt
+#from matplotlib import pyplot as plt
 from time import time
 from datetime import datetime
 
@@ -41,7 +41,7 @@ voltage=[]
 ser.flushInput()
 start_time=datetime.now()
 filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-outfile='/home/libowu/datalog/lampirdata/'+filename+'.csv'
+outfile='/home/pi/datalog/lampirdata/'+filename+'.csv'
 
 while True:
 	dt=datetime.now()-start_time
@@ -56,7 +56,7 @@ while True:
 		print('new file')
 		start_time=datetime.now()
 		filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-		outfile='/home/libowu/datalog/lampirdata/'+filename+'.csv'
+		outfile='/home/pi/datalog/lampirdata/'+filename+'.csv'
 
 f.close()
 	
