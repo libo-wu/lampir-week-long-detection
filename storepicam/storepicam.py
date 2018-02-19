@@ -7,8 +7,9 @@ import sys
 import glob
 import serial
 from serial import SerialException
-import numpy as np
+#import numpy as np
 from time import time
+import time
 from datetime import datetime
 
 def serial_port():	#get avalable ports
@@ -44,6 +45,7 @@ datadir='/home/pi/datalog/lampirdata/'
 
 camera=picamera.PiCamera()
 camera.resolution=(960,720)
+camera.framerate=60
 
 ser.flushInput()
 filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
@@ -59,13 +61,13 @@ while True:
 	pic_dt=datetime.now()-pic_start
 	data_dt=datetime.now()-data_start
 	f=open(outfile,'a')
-	if pic_dt.seconds<=15 and data_dt.seconds<=60:
+	if pic_dt.seconds<=10 and data_dt.seconds<=60:
 		data=ser.readline()
 		f.write(str(data))
 		f.write(str(datetime.now()))
 		f.write('\n')
-	elif pic_dt.seconds>15 and data_dt.seconds<=60:
-			print('new pic')
+	elif pic_dt.seconds>10 and data_dt.seconds<=60:
+			print('new pic:'+datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
 			pic_start=datetime.now()
 			camfile=picdir+datetime.now().strftime("%Y-%m-%d %H-%M-%S")+'.jpg'
 			camera.capture(camfile)
@@ -73,19 +75,19 @@ while True:
 			f.write(str(data))
 			f.write(str(datetime.now()))
 			f.write('\n')
-	elif pic_dt.seconds<=15 and data_dt.seconds>60:
+	elif pic_dt.seconds<=10 and data_dt.seconds>60:
 			f.close()
-			print('new file')
+			print('new file:'+datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
 			data_start=datetime.now()
 			filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 			outfile='/home/pi/datalog/lampirdata/'+filename+'.csv'
 	else:
-			print('new pic')
+			print('new pic:'+datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
 			pic_start=datetime.now()
 			camfile=picdir+datetime.now().strftime("%Y-%m-%d %H-%M-%S")+'.jpg'
 			camera.capture(camfile)
 			f.close()
-			print('new file')
+			print('new file:'+datetime.now().strftime("%Y-%m-%d %H-%M-%S"))
 			data_start=datetime.now()
 			filename=datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 			outfile='/home/pi/datalog/lampirdata/'+filename+'.csv'
