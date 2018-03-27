@@ -29,3 +29,11 @@ def serial_port():
 	
 if __name__=='__main__':
 	print(serial_port())
+	port_list=serial_port()
+	port1=port_list[0]
+	port1=''.join(port1)
+	ser1=serial.Serial(port1, 38400)
+	port2=port_list[1]
+	port2=''.join(port2)
+	ser2=serial.Serial(port2, 38400)
+	print(port1+' '+port2)
