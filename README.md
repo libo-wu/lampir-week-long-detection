@@ -1,7 +1,7 @@
 # README #
 
 
-### This project consists several parts:###
+### This project consists several parts: ###
  * LAMPIR driven code, based on arduino
  * Raspberry Pi code for camera, data storage
  * Human detection of photos and analog data analyzing
@@ -16,8 +16,8 @@
    
 ### How to use code to synchronized log video and PIR output ###
 1. The code must run under raspberry PI3. PiCam must present as well as LAMPIR node.
-2. Final code is in ./videolog/videolog.py
-3. Afterrunning, the video and analog output will be stored in 'videodir='/home/pi/datalog/videolog/'' and 'datadir='/home/pi/datalog/lampirdata/'', with 1 min intervals. 
+2. Final code is in `./videolog/videolog.py`
+3. Afterrunning, the video and analog output will be stored in `videodir='/home/pi/datalog/videolog/'` and `datadir='/home/pi/datalog/lampirdata/'`, with 1 min intervals. 
 
 ### Contribution guidelines ###
 
