@@ -8,18 +8,27 @@
 
 
 ### How do I get set up? ###
-1. LAMPIR is as a slave of Raspi. it runs arduino continuously. 
-2. Raspi runs python code, with multithread to collect data (plot) and storage photos. See (https://www.tutorialspoint.com/python/python_multithreading.htm)
-3. Filename is based on the time.
+1. LAMPIR and PIR are as slaves of Raspi.
+2. Raspi runs Python code, with multithread to collect data (plot) and storage photos. See [Python multithreading](https://www.tutorialspoint.com/python/python_multithreading.htm).
+3. Filename is the system time when starting recording.
 4. Picamera takes record video continously, the video files are seperated by 1 min.
-5. (2/21/18) The current running code is ./videolog/videolog.py.
    
 ### How to use code to synchronized log video and PIR output ###
-1. The code must run under raspberry PI3. PiCam must present as well as LAMPIR node.
-2. Final code is in `./videolog/videolog.py`
-3. Afterrunning, the video and analog output will be stored in `videodir='/home/pi/datalog/videolog/'` and `datadir='/home/pi/datalog/lampirdata/'`, with 1 min intervals. 
+1. The code <b>MUST</b> run under raspberry PI3. PiCam must present as well as LAMPIR node.
+2. Final code is in `./videolog/videolog.py` or `./videolog/videolog_2pir.py` (for logging data from LAMPIR and traditional PIR).
+3. Afterrunning, the video and analog output will be stored in `videodir='/home/pi/datalog/videolog/'`, `datadir='/home/pi/datalog/lampirdata/'` `pirdir='/home/pi/datalog/pirdata`, with 1 min intervals. 
 
-### Contribution guidelines ###
+### Dataprocess of voltage signals ###
+1. All analog signals are converted through an ADC on Arduino board, range from (0, 1024), indicating (0, 5 V). Raspi logs these data into a `.CSV` file, in such form: `b'526\n'2018-03-08 17:57:40.330576`.
+2. A preprocessing is required to extract such signals as well as meaningful time stamps.
+3. Types of data signals:
+
+High frequency | Signal high Vpp | Single low Vpp  
+---|---|---
+Moving	| Stationary |	Unoccupied
+4. First step is seperate high and low frequency.
+5. Second step is classify stationay and unoccupied scenarios in low frequency signals.
+
 
 
 
